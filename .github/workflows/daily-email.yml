@@ -2,8 +2,8 @@ name: Daily Calendar Email
 
 on:
   schedule:
-    # Run every day at 9:00 AM Eastern Time (14:00 UTC)
-    - cron: '0 14 * * *'
+    # Run every day at 12:00 PM (noon) Eastern Time (17:00 UTC)
+    - cron: '0 17 * * *'
   workflow_dispatch: # Allow manual trigger for testing
 
 jobs:
