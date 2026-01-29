@@ -32,8 +32,8 @@ jobs:
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         GOOGLE_TOKEN: ${{ secrets.GOOGLE_TOKEN }}
       run: |
-        echo "$GOOGLE_CREDENTIALS" | tr -d '\n\r' > credentials/credentials.json
-        echo "$GOOGLE_TOKEN" | tr -d '\n\r' > credentials/token_contact_xshift.json
+        python3 -c "import json, os; open('credentials/credentials.json', 'w').write(json.dumps(json.loads(os.environ['GOOGLE_CREDENTIALS'])))"
+        python3 -c "import json, os; open('credentials/token_contact_xshift.json', 'w').write(json.dumps(json.loads(os.environ['GOOGLE_TOKEN'])))"
 
     - name: Create .env file
       env:
