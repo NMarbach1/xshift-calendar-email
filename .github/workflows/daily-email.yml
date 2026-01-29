@@ -29,11 +29,11 @@ jobs:
 
     - name: Setup Google credentials
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-        GOOGLE_TOKEN: ${{ secrets.GOOGLE_TOKEN }}
+        GOOGLE_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_CREDENTIALS_BASE64 }}
+        GOOGLE_TOKEN_BASE64: ${{ secrets.GOOGLE_TOKEN_BASE64 }}
       run: |
-        python3 -c "import json, os; open('credentials/credentials.json', 'w').write(json.dumps(json.loads(os.environ['GOOGLE_CREDENTIALS'])))"
-        python3 -c "import json, os; open('credentials/token_contact_xshift.json', 'w').write(json.dumps(json.loads(os.environ['GOOGLE_TOKEN'])))"
+        echo "$GOOGLE_CREDENTIALS_BASE64" | base64 -d > credentials/credentials.json
+        echo "$GOOGLE_TOKEN_BASE64" | base64 -d > credentials/token_contact_xshift.json
 
     - name: Create .env file
       env:
